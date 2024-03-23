@@ -1,12 +1,16 @@
-from flask import Flask, request, jsonify
 import os
+from flask import Flask, request, jsonify, render_template
 
-app = Flask(__name__, static_folder='../ui')
+# Define the base directory
+basedir = os.path.abspath(os.path.dirname(__file__) + '/..')
+
+app = Flask(__name__,
+            static_folder=os.path.join(basedir, 'static'),
+            template_folder=os.path.join(basedir, 'templates'))
 
 @app.route('/')
 def index():
-    with open(os.path.join(app.static_folder, 'index.html'), 'r') as file:
-        return file.read()
+    return render_template('index.html')
 
 @app.route('/generate-plan', methods=['POST'])
 def generate_plan():
@@ -14,7 +18,6 @@ def generate_plan():
     current_weight = request.form['current-weight']
     target_weight = request.form['target-weight']
 
-    # Hard-coded logic for demonstration
     if exercise_type == 'core':
         plan = 'Do 30 minutes of core exercises daily.'
     elif exercise_type == 'legs':
@@ -29,9 +32,5 @@ def generate_plan():
         'plan': plan
     })
 
-@app.route('/ui/<path:path>')
-def send_ui(path):
-    return send_from_directory('ui', path)
-
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=8000)
