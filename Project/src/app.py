@@ -17,7 +17,13 @@ def generate_plan():
     exercise_type = request.form['exercise-type']
     current_weight = request.form['current-weight']
     target_weight = request.form['target-weight']
+    current_maintenance = request.form['current-maintenance'] 
+
     if target_weight < current_weight:
+        macroplan = """Calories: """ + (int(current_maintenance) - 200) +\
+            """Protein: """ + int(current_weight) + """g""" +\
+            """Fat: """ + (float(current_maintenance) - 200) * 0.25 +\
+            """Carbohydrates: """ + (float(current_maintenance)) * 0.5
         if exercise_type == 'core':
             plan = """Goal = Weight Loss: 
             3 repeats (3 sets/12 reps crunches, 3 sets/12 reps bicycle kicks, 3 set/12 reps flutter kick)
@@ -31,6 +37,10 @@ def generate_plan():
             3 repeats of (3 sets of 5 pullups|3 sets of 12 light bench press|3 sets of 8 pushups|2 sets till failure light tricep extension)
             1 minute rest inbetween sets 5 inbetween repeats"""
     elif target_weight > current_weight:
+        macroplan = """Calories: """ + (int(current_maintenance) + 200) +\
+            """Protein: """ + int(current_weight) + """g""" +\
+            """Fat: """ + (float(current_maintenance) + 200) * 0.25 +\
+            """Carbohydrates: """ + (float(current_maintenance)) * 0.5
         if exercise_type == 'core':
             plan = """Goal = Weight Gain: 
             1x(2 sets/5 reps weighted crunches|2 sets/30 reps hanging leg raises|2 sets/12 reps medicine ball throw)
@@ -48,7 +58,8 @@ def generate_plan():
         'exercise_type': exercise_type,
         'current_weight': current_weight,
         'target_weight': target_weight,
-        'plan': plan
+        'plan': plan,
+        'macroplan' : macroplan
     })
 
 if __name__ == '__main__':
