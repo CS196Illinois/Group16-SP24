@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Exercise Generator</h1>
+        <form id="exerciseForm">
+            <label for="exercise-type">Type of Exercise:</label>
+            <select name="exercise-type" id="exercise-type">
+                <option value="core">Core</option>
+                <option value="legs">Legs</option>
+                <option value="upper-body">Upper Body</option>
+            </select>
+
+            <label for="current-weight">Current Weight:</label>
+            <input type="text" id="current-weight" name="current-weight" placeholder="What is your current weight?">
+
+            <label for="target-weight">Target Weight:</label>
+            <input type="text" id="target-weight" name="target-weight" placeholder="What is your target weight?">
+
+            <button type="button" onclick="generatePlan()">Generate Plan</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
