@@ -21,8 +21,8 @@ def generate_plan():
     if target_weight < current_weight:
         macroplan_loss = """Calories: """ + str((int(current_weight) * 15) - 200) +\
             """ Protein: """ + str(int(current_weight)) + """g""" +\
-            """ Fat: """ + str(round((((float(current_weight) * 15) - 200) * 0.25) / 9, 3)) + """g""" +\
-            """ Carbohydrates: """ + str(round((((float(current_weight) * 15) - 200) * 0.5) / 4, 3)) + """g"""
+            """ Fat: """ + str((((float(current_weight) * 15) - 200) * 0.25) / 9) + """g""" +\
+            """ Carbohydrates: """ + str((((float(current_weight) * 15) - 200) * 0.5) / 4) + """g"""
         if exercise_type == 'core':
             plan = """Goal = Weight Loss: 
             3 repeats (3 sets/12 reps crunches, 3 sets/12 reps bicycle kicks, 3 set/12 reps flutter kick)
@@ -41,17 +41,17 @@ def generate_plan():
     elif target_weight > current_weight:
         macroplan_gain = """Calories: """ + str((int(current_weight) * 15) + 200) +\
             """ Protein: """ + str(int(current_weight)) + """g""" +\
-            """ Fat: """ + str(round((((float(current_weight) * 15) + 200) * 0.25) / 9, 3)) + """g""" +\
-            """ Carbohydrates: """ + str(round((((float(current_weight) * 15) + 200) * 0.5, 3)) / 4) + """g"""
+            """ Fat: """ + str((((float(current_weight) * 15) + 200) * 0.25) / 9) + """g""" +\
+            """ Carbohydrates: """ + str((((float(current_weight) * 15) + 200) * 0.5 / 4)) + """g"""
         if exercise_type == 'core':
             plan = """Goal = Weight Gain: 
             1x(2 sets/5 reps weighted crunches|2 sets/30 reps hanging leg raises|2 sets/12 reps medicine ball throw)
-            3 minute rest between all sets"""
+            3 minute rest between all sets""" +\
             """ Macros: """ + macroplan_gain
         elif exercise_type == 'legs':
             plan = """Goal = Weight Gain:
             1x(2 sets of 5 heavy squat|2 sets of 12 heavy leg press|2 sets of bulgarian split squats till failure)
-            3-5 minute rest inbetween sets"""
+            3-5 minute rest inbetween sets""" +\
             """ Macros: """ + macroplan_gain
         else:  # upper-body
             plan = """Goal = Weight Gain:
