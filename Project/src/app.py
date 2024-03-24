@@ -21,8 +21,8 @@ def generate_plan():
     if target_weight < current_weight:
         macroplan_loss = """Calories: """ + str((int(current_weight) * 15) - 200) +\
             """ Protein: """ + str(int(current_weight)) + """g""" +\
-            """ Fat: """ + str((((float(current_weight) * 15) - 200) * 0.25) / 9) + """g""" +\
-            """ Carbohydrates: """ + str((((float(current_weight) * 15) - 200) * 0.5) / 4) + """g"""
+            """ Fat: """ + str(round((((float(current_weight) * 15) - 200) * 0.25) / 9, 3)) + """g""" +\
+            """ Carbohydrates: """ + str(round((((float(current_weight) * 15) - 200) * 0.5) / 4, 3)) + """g"""
         if exercise_type == 'core':
             plan = """Goal = Weight Loss: 
             3 repeats (3 sets/12 reps crunches, 3 sets/12 reps bicycle kicks, 3 set/12 reps flutter kick)
@@ -41,8 +41,8 @@ def generate_plan():
     elif target_weight > current_weight:
         macroplan_gain = """Calories: """ + str((int(current_weight) * 15) + 200) +\
             """ Protein: """ + str(int(current_weight)) + """g""" +\
-            """ Fat: """ + str((((float(current_weight) * 15) + 200) * 0.25) / 9) + """g""" +\
-            """ Carbohydrates: """ + str((((float(current_weight) * 15) + 200) * 0.5) / 4) + """g"""
+            """ Fat: """ + str(round((((float(current_weight) * 15) + 200) * 0.25) / 9, 3)) + """g""" +\
+            """ Carbohydrates: """ + str(round((((float(current_weight) * 15) + 200) * 0.5, 3)) / 4) + """g"""
         if exercise_type == 'core':
             plan = """Goal = Weight Gain: 
             1x(2 sets/5 reps weighted crunches|2 sets/30 reps hanging leg raises|2 sets/12 reps medicine ball throw)
